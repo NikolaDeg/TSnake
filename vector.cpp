@@ -1,45 +1,39 @@
-struct vector
+#include "headers/vector.h"
+
+Vector::Vector(int x, int y)
 {
-    vector(int x, int y)
-    {
-        this->x = x;
-        this->y = y;
-    }
+    this->x = x;
+    this->y = y;
+}
 
-    vector()
-    {
-        this->x = 0;
-        this->y = 0;
-    }
+Vector::Vector()
+{
+    this->x = 0;
+    this->y = 0;
+}
 
-public:
-    int x;
-    int y;
+Vector Vector::operator +(Vector second)
+{
+    return Vector(this->x + second.x, this->y + second.y);
+}
+Vector Vector::operator -(Vector second)
+{
+    return Vector(this->x - second.x, this->y - second.y);
+}
 
-    vector operator +(vector second)
-    {
-        return vector(this->x + second.x, this->y + second.y);
-    }
-    vector operator -(vector second)
-    {
-        return vector(this->x - second.x, this->y - second.y);
-    }
+Vector Vector::operator *(Vector second)
+{
+    return Vector(this->x * second.x, this->y * second.y);
+}
 
-    vector operator *(vector second)
+Vector Vector::operator /(Vector second)
+{
+    if(second.x != 0 && second.y !=0)
     {
-        return vector(this->x * second.x, this->y * second.y);
+        return Vector(this->x / second.x, this->y / second.y);
     }
-
-    vector operator /(vector second)
+    else
     {
-        if(second.x != 0 && second.y !=0)
-        {
-            return vector(this->x / second.x, this->y / second.y);
-        }
-        else
-        {
-            return vector(0, 0);
-        }
+        return Vector(0, 0);
     }
-};
-
+}

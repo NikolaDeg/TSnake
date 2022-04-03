@@ -1,22 +1,7 @@
-#include "vector.cpp"
+#include "headers/entity.h"
 
-class Entity
+Entity::Entity(EntityType type, Vector position)
 {
-public:
-
-    enum EntityType
-    {
-        food,
-        wall,
-    };
-
-    EntityType Type;
-
-    vector Position;
-
-    Entity(EntityType type, vector position)
-    {
-        this->Type = type;
-        this->Position = position;
-    }
-};
+    this->Type = type;
+    this->Position = position;
+}

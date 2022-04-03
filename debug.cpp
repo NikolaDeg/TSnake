@@ -1,40 +1,35 @@
 #include <iostream>
 #include <string>
-#include "vector.cpp"
+#include "headers/debug.h"
 
 using namespace std;
 
-class Debuger
+Vector* Debuger::askForVectors(int& size)
 {
-    public:
+    size = 0;
+    cout << "How many dots you want to see: ";
+    cin >> size;
+    cout << endl;
 
-    static vector* askForVectors(int& size)
+    Vector* dots = new Vector[size];
+
+    for(int i = 0; i < size; i++)
     {
-        size = 0;
-        cout << "How many dots you want to see: ";
-        cin >> size;
+        int x = 0;
+        int y = 0;
+
+        cout << "Set x for " << i << " Vector: ";
+        cin >> x;
         cout << endl;
 
-        vector* dots = new vector[size];
+        cout << "Set x for " << i << " Vector: ";
+        cin >> y;
+        cout << endl;
 
-        for(int i = 0; i < size; i++)
-        {
-            int x = 0;
-            int y = 0;
+        dots[i] = Vector(x, y);
 
-            cout << "Set x for " << i << " vector: ";
-            cin >> x;
-            cout << endl;
-
-            cout << "Set x for " << i << " vector: ";
-            cin >> y;
-            cout << endl;
-
-            dots[i] = vector(x, y);
-
-            cout << "-------------------------" << endl << endl;
-        }
-
-        return dots;
+        cout << "-------------------------" << endl << endl;
     }
-};
+
+    return dots;
+}

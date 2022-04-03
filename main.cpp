@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-#include "vector.cpp"
-#include "visualiser.cpp"
-#include "debug.cpp"
+#include "headers/vector.h"
+#include "headers/visualiser.h"
+#include "headers/debug.h"
 
 using namespace std;
 
@@ -10,7 +10,7 @@ int main()
 {
     int size = 0;
 
-    vector *p;
+    Vector *p;
     p = Debuger::askForVectors(size);
 
     Visualiser::draw(p, size);
