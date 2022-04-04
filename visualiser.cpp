@@ -4,43 +4,65 @@
 
 using namespace std;
 
-const int CONFX = 25;
-const int CONFY = 25;
-
-void Visualiser::draw(Vector *points, int size)
+int** Visualiser::CreateGrid(Entity *entities, int entities_count, int x_size, int y_size)
 {
-    int image[CONFX][CONFY];
+    int **grid = new int*[x_size];
     
-    for(int i = 0; i < CONFX; i++)
+    // Fill the grid with void
+    for(int i = 0; i < x_size; i++)
     {
-        for(int j = 0; j < CONFY; j++)
+        grid[i] = new int[y_size];
+
+        for(int j = 0; j < y_size; j++)
         {
-            image[i][j] = 0;
+            grid[i][j] = 0;
         }
     }
 
-    for(int i = 0; i < size; i++)
+    // Set entities at the grid
+    for(int i = 0; i < entities_count; i++)
     {
-        image[points[i].x][points[i].y] = 1;
+        Entity item = entities[i];
+        switch(item.Type)
+        {
+            case EntityType::food:
+                grid[item.Position.x][item.Position.y] = 1;
+                break;
+            case EntityType::wall:
+                grid[item.Position.x][item.Position.y] = 2;
+                break;
+        }
     }
 
-    for(int i = 0; i < CONFX; i++)
+    return grid;
+}
+
+void Visualiser::Draw(int **grid, int x_size, int y_size)
+{
+    // Creating output image
+    for(int i = 0; i < x_size; i++)
     {
         string row = "";
-        for(int j = 0; j < CONFY; j++)
+        for(int j = 0; j < y_size; j++)
         {
             string buffer;
 
-            if(image[i][j] == 1)
+            int item = grid[i][j];
+
+            switch (item)
             {
-                buffer = "██";
-            }
-            else
-            {
-                buffer = "░░";
+                case 0:
+                    buffer = "░░";
+                    break;
+                case 1:
+                    buffer = "╠╣";
+                    break;
+                case 2:
+                    buffer = "██";
+                    break;
             }
 
-            row = row + buffer + "";
+            row += buffer + "";
         }
         cout << row << endl;
     }

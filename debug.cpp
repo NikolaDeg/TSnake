@@ -4,29 +4,49 @@
 
 using namespace std;
 
-Vector* Debuger::askForVectors(int& size)
+Entity* Debuger::AskForEntities(int& size)
 {
     size = 0;
-    cout << "How many dots you want to see: ";
+    cout << "How many entities you want to see: ";
     cin >> size;
     cout << endl;
 
-    Vector* dots = new Vector[size];
+    Entity* dots = new Entity[size];
 
     for(int i = 0; i < size; i++)
     {
         int x = 0;
         int y = 0;
+        int type = 0;
+        EntityType e_type = none;
 
-        cout << "Set x for " << i << " Vector: ";
+        cout << "Set x position for the " << i << " entity: ";
         cin >> x;
         cout << endl;
 
-        cout << "Set x for " << i << " Vector: ";
+        cout << "Set y position for the " << i << " entity: ";
         cin >> y;
         cout << endl;
 
-        dots[i] = Vector(x, y);
+        cout << "Set entity type:\nFood - 1\nWall - 2\n>> ";
+        cin >> type;
+        cout << endl;
+
+        switch (type)
+        {
+            case 1:
+                e_type = food;
+                break;
+
+            case 2:
+                e_type = wall;
+                break;
+        
+        default:
+            break;
+        }
+
+        dots[i] = Entity(e_type, x, y);
 
         cout << "-------------------------" << endl << endl;
     }

@@ -10,9 +10,13 @@ int main()
 {
     int size = 0;
 
-    Vector *p;
-    p = Debuger::askForVectors(size);
+    Entity *entities;
+    entities = Debuger::AskForEntities(size);
 
-    Visualiser::draw(p, size);
+    int** grid;
+
+    grid = Visualiser::CreateGrid(entities, size, 25, 25);
+
+    Visualiser::Draw(grid, 25, 25);
     return 0;
 }
